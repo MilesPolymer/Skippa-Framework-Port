@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- _________________________ Application Settings _________________________ -->
+
+	<app title="Skippa - Framework Port" file="Skippa" packageName="com.violet292.skippa-port" package="com.violet292.skippa-port" main="funkin.Main" version="FE v0.0.1" company="violet292" />
+
+	<app preloader="flixel.system.FlxPreloader" />
+	<set name="SWF_VERSION" value="11.8" />
+
+	<!-- ____________________________ Window Settings ___________________________ -->
+
+	<!--These window settings apply to all targets-->
+	<window width="1280" height="720" fps="200" background="" hardware="true" vsync="false" />
+
+	<!--HTML5-specific-->
+	<window if="html5" resizable="true" />
+
+	<!--Desktop-specific-->
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
+
+	<!--Mobile-specific-->
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+
+	<!-- _____________________________ Path Settings ____________________________ -->
+
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
+	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
+
+	<classpath name="source" />
+
+	<assets path="assets/funkin"	exclude="*.ogg" if="web"/>
+	<assets path="assets/funkin"  exclude="*.mp3|*.mp4" unless="web"/>
+	<assets path="assets/core"	exclude="*.ogg" if="web"/>
+	<assets path="assets/core"  exclude="*.mp3|*.mp4" unless="web"/>
+	
+	<define name="PRELOAD_ALL" unless="web" />
+	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
+	
+	<section if="PRELOAD_ALL">
+		<library name="songs"    preload="true" />
+	</section>
+	
+	<section if="NO_PRELOAD_ALL">
+		<library name="songs"    preload="false" />
+	</section>
+	
+	<assets path="assets/funkin/music/songs"    library="songs"    exclude="*.ogg" if="web"/>
+	<assets path="assets/funkin/music/songs"    library="songs"    exclude="*.mp3|*.mp4" unless="web"/>
+
+	<!-- ______________________________ Defines _____________________________ -->
+	<!-- You can disable these if you want by just commenting them out -->
+
+	<define name="FLX_NO_FOCUS_LOST_SCREEN" />
+	<define name="FLX_NO_DEBUG" unless="debug" />
+	<define name="NAPE_RELEASE_BUILD" unless="debug" />
+	<define name="CRASH_HANDLER" if="desktop" unless="debug" />
+	<define name="USE_INST_TIME" if="html5" />
+	<define name="USE_SHADERS" />
+	<define name="FEATURE_LOGGING" if="FEATURE_FILESYSTEM" unless="PUBLIC_BUILD" />
+	<define name="FEATURE_FILESYSTEM" if="desktop" />
+	<!-- _______________________________ Libraries ______________________________ -->
+
+	<haxelib name="flixel" />
+
+	<haxelib name="flixel-violet" />
+
+	<haxelib name="flixel-addons" />
+
+	<haxelib name="hscript" />
+
+	<define name="hscriptPos" />
+
+	<haxelib name="hscript-improved" />
+	
+	<haxelib name="hxcpp-debug-server" />
+
+	<haxelib name="away3d" />
+
+	<haxelib name="linc_discord-rpc" if="desktop" />
+
+	<!-- ______________________________ Flixel Logos _______________________________ -->
+	
+	<icon path="assets/core/flixel-icons/icon16.png" size='16'/>
+	<icon path="assets/core/flixel-icons/icon32.png" size='32'/>
+	<icon path="assets/core/flixel-icons/icon64.png" size='64'/>
+	<icon path="assets/core/flixel-icons/iconOG.png" size='96'/>
+	
+</project>
